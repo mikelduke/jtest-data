@@ -2,9 +2,11 @@ package com.mikelduke.jtest.data;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,6 +33,9 @@ public class JTestData {
 				testData = data.get(type);
 				if (testData == null) {
 					testData = load(type);
+					testData.setData(
+						Collections.unmodifiableList(
+							testData.getData().stream().distinct().collect(Collectors.toList())));
 					data.put(type, testData);
 				}
 			}

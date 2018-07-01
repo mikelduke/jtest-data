@@ -27,6 +27,13 @@ public class JTestDataTest {
 		Assert.assertFalse(nouns.get(0).isEmpty());
 	}
 
+	@Test(expected=UnsupportedOperationException.class)
+	public void nouns_cantModify() {
+		JTestData.get(DataType.NOUNS).add("test");
+
+		Assert.fail("Adding to list should have thrown exception");
+	}
+
 	@Test
 	public void allTypes_notEmpty() {
 		for (DataType t : DataType.values()) {
