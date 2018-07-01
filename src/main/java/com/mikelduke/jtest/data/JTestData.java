@@ -13,6 +13,8 @@ public class JTestData {
 
 	static final Map<DataType, SimpleTestData> data = new HashMap<>();
 
+	private JTestData() { }
+
 	public static void loadAll() {
 		synchronized(data) {
 			for (DataType t : DataType.values()) {
