@@ -9,15 +9,23 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JTestData {
-	private static ObjectMapper mapper = new ObjectMapper();
+	private static final ObjectMapper mapper = new ObjectMapper();
 
-	private Map<DataType, SimpleTestData> data = new HashMap<>();
+	static final Map<DataType, SimpleTestData> data = new HashMap<>();
 
-	public List<String> get(DataType type) {
+	public static void loadAll() {
+		synchronized(data) {
+			for (DataType t : DataType.values()) {
+				data.put(t, load(t));
+			}
+		}
+	}
+
+	public static List<String> get(DataType type) {
 		SimpleTestData testData = data.get(type);
 
 		if (testData == null) {
-			synchronized (data) {
+			synchronized(data) {
 				testData = data.get(type);
 				if (testData == null) {
 					testData = load(type);
