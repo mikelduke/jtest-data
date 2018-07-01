@@ -17,8 +17,13 @@ public class JTestData {
 		SimpleTestData testData = data.get(type);
 
 		if (testData == null) {
-			testData = load(type);
-			data.put(type, testData);
+			synchronized (data) {
+				testData = data.get(type);
+				if (testData == null) {
+					testData = load(type);
+					data.put(type, testData);
+				}
+			}
 		}
 
 		return testData.getData();
