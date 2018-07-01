@@ -1,3 +1,3 @@
 # jtest-data
-Simple package to use for generating test data.
+Simple package for generating test data.
 Uses json files of words
