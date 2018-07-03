@@ -8,7 +8,9 @@ public enum DataType {
     PREPOSITIONS("prepositions.json"),
     STREET_NAMES("street-names.json"),
     STREET_PREFIXES("street-prefixes.json"),
-    VERBS("verbs.json");
+    VERBS("verbs.json"),
+    FIRST_NAMES("first-names.json"),
+    LAST_NAMES("last-names.json");
 
     private String fileName;
 
